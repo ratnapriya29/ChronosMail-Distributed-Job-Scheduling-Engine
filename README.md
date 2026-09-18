@@ -4,12 +4,15 @@ A production-grade, highly reliable, and distributed Full-Stack Email Job Schedu
 
 Built for the **ReachInbox (Outbox Labs)** technical assessment.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel%20App-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-ChronosMail--Distributed--Job--Scheduling--Engine-indigo?style=for-the-badge&logo=github)](https://github.com/ratnapriya29/ChronosMail-Distributed-Job-Scheduling-Engine)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![BullMQ](https://img.shields.io/badge/BullMQ-Distributed%20Queue-red?style=for-the-badge&logo=redis)](https://docs.bullmq.io/)
 [![Prisma](https://img.shields.io/badge/Prisma-PostgreSQL-teal?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
 [![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.13-yellow?style=for-the-badge&logo=elasticsearch)](https://www.elastic.co/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+
+> 🚀 **Live Production Demo**: [https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/](https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/)
 
 ---
 
@@ -282,7 +285,8 @@ Want to share a live URL with recruiters without running localhost? Follow this 
    - **Framework Preset:** `Vite` (auto-detected).
 4. Under **Environment Variables**, add:
    - `VITE_API_BASE_URL`: `https://your-backend-url.onrender.com/api`
-5. Click **Deploy**! Your application will be live at `https://your-project.vercel.app`!
+5. Click **Deploy**!
+   - **Production URL**: [`https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/`](https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/)
 
 ---
 

@@ -2,6 +2,11 @@
   "name": "chronosmail-job-scheduler-engine",
   "version": "1.0.0",
   "description": "ChronosMail: Production-grade Full-Stack Email Job Scheduler with BullMQ, Redis, PostgreSQL, Prisma, Elasticsearch, and React",
+  "homepage": "https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ratnapriya29/ChronosMail-Distributed-Job-Scheduling-Engine.git"
+  },
   "scripts": {
     "backend:install": "cd backend && npm install",
     "backend:dev": "cd backend && npm run dev",
