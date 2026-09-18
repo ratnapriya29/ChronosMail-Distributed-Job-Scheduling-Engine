@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { env } from '../config/env.js';
+import nodemailer from 'nodemailer';
+import { getTransporter } from '../config/ethereal.js';
 
 export interface SendEmailOptions {
   from: string;
@@ -11,69 +11,30 @@ export interface SendEmailOptions {
 
 export interface SendEmailResult {
   messageId: string;
-  previewUrl: false;
+  previewUrl: string | false;
 }
 
 export class EtherealService {
   /**
-   * Send an email through Resend Email API.
-   *
-   * The class name is kept as EtherealService so the existing
-   * worker does not need to be changed.
+   * Send an email via Ethereal fake SMTP and return preview URL
    */
-  static async sendEmail(
-    options: SendEmailOptions
-  ): Promise<SendEmailResult> {
+  static async sendEmail(options: SendEmailOptions): Promise<SendEmailResult> {
+    const transporter = await getTransporter();
 
-    if (!env.RESEND_API_KEY) {
-      throw new Error('RESEND_API_KEY is not configured');
-    }
+    const mailOptions = {
+      from: options.from || 'ReachInbox Demo <sender@reachinbox.ai>',
+      to: options.to,
+      subject: options.subject,
+      text: options.text || options.html?.replace(/<[^>]*>?/gm, '') || '',
+      html: options.html || `<p>${options.text || ''}</p>`,
+    };
 
-    try {
-      const response = await axios.post(
-        'https://api.resend.com/emails',
-        {
-          // Resend's default testing sender.
-          // This avoids needing to verify a custom domain for the demo.
-          from: 'ChronosMail <onboarding@resend.dev>',
-          to: [options.to],
-          subject: options.subject,
-          text:
-            options.text ||
-            options.html?.replace(/<[^>]*>?/gm, '') ||
-            '',
-          html:
-            options.html ||
-            `<p>${options.text || ''}</p>`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${env.RESEND_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          timeout: 15000,
-        }
-      );
+    const info = await transporter.sendMail(mailOptions);
+    const previewUrl = nodemailer.getTestMessageUrl(info);
 
-      console.log(
-        `[Resend] Email sent successfully. Message ID: ${response.data.id}`
-      );
-
-      return {
-        messageId: response.data.id,
-        previewUrl: false,
-      };
-
-    } catch (error: any) {
-      const resendError =
-        error?.response?.data?.message ||
-        error?.response?.data?.name ||
-        error?.message ||
-        'Unknown Resend error';
-
-      console.error('[Resend] Failed to send email:', resendError);
-
-      throw new Error(`Resend email failed: ${resendError}`);
-    }
+    return {
+      messageId: info.messageId,
+      previewUrl: previewUrl || false,
+    };
   }
 }
