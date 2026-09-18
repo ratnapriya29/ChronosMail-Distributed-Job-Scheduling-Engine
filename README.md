@@ -12,7 +12,7 @@ Built for the **ReachInbox (Outbox Labs)** technical assessment.
 [![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.13-yellow?style=for-the-badge&logo=elasticsearch)](https://www.elastic.co/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 
-> 🚀 **Live Production Demo**: [https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/]https://chronos-mail-distributed-job-schedu.vercel.app/
+> 🚀 **Live Production Demo**: https://chronos-mail-distributed-job-schedu.vercel.app/
 
 ---
 
