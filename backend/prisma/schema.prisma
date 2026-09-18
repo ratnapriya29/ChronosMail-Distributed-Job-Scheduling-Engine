@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String       @id @default(uuid())
+  email       String       @unique
+  name        String?
+  avatar      String?
+  googleId    String?      @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  emails      EmailJob[]
+  slackConfig SlackConfig?
+
+  @@map("users")
+}
+
+model EmailJob {
+  id                 String    @id @default(uuid())
+  idempotencyKey     String    @unique
+  userId             String?
+  user               User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  sender             String
+  recipient          String
+  subject            String
+  body               String
+  status             String    @default("PENDING") // PENDING, PROCESSING, SENT, FAILED, DELAYED_RATE_LIMIT
+  scheduledAt        DateTime
+  sentAt             DateTime?
+  bullJobId          String?
+  delayMs            Int       @default(0)
+  etherealPreviewUrl String?
+  errorMessage       String?
+  batchId            String?
+  retryCount         Int       @default(0)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([status])
+  @@index([sender])
+  @@index([scheduledAt])
+  @@index([batchId])
+  @@map("email_jobs")
+}
+
+model SlackConfig {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  webhookUrl  String?
+  channel     String?
+  accessToken String?
+  teamName    String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("slack_configs")
+}

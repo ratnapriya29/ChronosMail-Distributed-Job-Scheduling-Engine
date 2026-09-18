@@ -1,0 +1,30 @@
+{
+  "name": "chronosmail-job-scheduler-engine",
+  "version": "1.0.0",
+  "description": "ChronosMail: Production-grade Full-Stack Email Job Scheduler with BullMQ, Redis, PostgreSQL, Prisma, Elasticsearch, and React",
+  "scripts": {
+    "backend:install": "cd backend && npm install",
+    "backend:dev": "cd backend && npm run dev",
+    "backend:build": "cd backend && npm run build",
+    "backend:prisma": "cd backend && npx prisma db push",
+    "frontend:install": "cd frontend && npm install",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "install:all": "npm run backend:install && npm run frontend:install",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "keywords": [
+    "chronosmail",
+    "reachinbox",
+    "bullmq",
+    "redis",
+    "elasticsearch",
+    "prisma",
+    "react",
+    "email-scheduler",
+    "distributed-systems"
+  ],
+  "author": "Ratnapriya",
+  "license": "MIT"
+}
