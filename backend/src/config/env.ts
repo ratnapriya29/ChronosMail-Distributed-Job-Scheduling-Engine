@@ -37,5 +37,8 @@ export const env = {
     redirectUri: process.env.SLACK_REDIRECT_URI || 'http://localhost:5000/api/slack/oauth/callback',
   },
 
- RESEND_API_KEY: process.env.RESEND_API_KEY || '',
+ ETHEREAL: {
+  user: process.env.ETHEREAL_USER || '',
+  pass: process.env.ETHEREAL_PASS || '',
+},
 };
