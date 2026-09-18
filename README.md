@@ -251,6 +251,41 @@ Backend services will be online:
 
 ---
 
+## 🌐 Deploying Live to the Web (Public Website)
+
+Want to share a live URL with recruiters without running localhost? Follow this free 2-part deployment guide:
+
+### Part 1: Free Cloud Database & Redis (5 minutes)
+1. **PostgreSQL Database:** Sign up for free at [Neon.tech](https://neon.tech) or [Supabase](https://supabase.com). Create a project and copy your `DATABASE_URL`.
+2. **Redis Instance:** Sign up for free at [Upstash Redis](https://upstash.com). Create a database and copy the `rediss://...` connection string (`REDIS_URL`).
+
+### Part 2: Deploy Backend to Render (Free)
+1. Log into [Render.com](https://render.com) and click **New + > Web Service**.
+2. Connect your GitHub repository: `https://github.com/ratnapriya29/ChronosMail-Distributed-Job-Scheduling-Engine`.
+3. Configure the settings:
+   - **Root Directory:** `backend`
+   - **Build Command:** `npm install && npx prisma generate && npm run build`
+   - **Start Command:** `npm run start`
+4. Under **Environment Variables**, add:
+   - `DATABASE_URL`: *(Your Neon/Supabase PostgreSQL URL)*
+   - `REDIS_URL`: *(Your Upstash Redis URL)*
+   - `NODE_ENV`: `production`
+   - `PORT`: `5000`
+   - `FRONTEND_URL`: `*`
+5. Click **Deploy Web Service**. Once deployed, copy your backend URL (e.g. `https://chronosmail-backend.onrender.com`).
+
+### Part 3: Deploy Frontend to Vercel (1 minute)
+1. Log into [Vercel.com](https://vercel.com) and click **Add New... > Project**.
+2. Select your repository `ChronosMail-Distributed-Job-Scheduling-Engine`.
+3. In the project setup:
+   - **Root Directory:** Click Edit and select `frontend`.
+   - **Framework Preset:** `Vite` (auto-detected).
+4. Under **Environment Variables**, add:
+   - `VITE_API_BASE_URL`: `https://your-backend-url.onrender.com/api`
+5. Click **Deploy**! Your application will be live at `https://your-project.vercel.app`!
+
+---
+
 ## 🧪 Testing Edge Cases & Verification
 
 ### Scenario A: Testing the CSV Lead Upload & Batch Scheduling

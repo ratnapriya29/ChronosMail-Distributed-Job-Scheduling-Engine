@@ -1,0 +1,45 @@
+services:
+  # 1. Backend Web Service
+  - type: web
+    name: chronosmail-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm run start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: chronosmail-postgres
+          property: connectionString
+      - key: FRONTEND_URL
+        value: "*"
+      - key: WORKER_CONCURRENCY
+        value: "5"
+      - key: MAX_EMAILS_PER_HOUR_PER_SENDER
+        value: "5"
+      - key: PROVIDER_THROTTLE_DELAY_MS
+        value: "2000"
+
+  # 2. Frontend Static Site
+  - type: static
+    name: chronosmail-frontend
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+databases:
+  - name: chronosmail-postgres
+    plan: free
+    databaseName: reachinbox_scheduler
+    user: postgres
