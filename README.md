@@ -4,7 +4,7 @@ A production-grade, highly reliable, and distributed Full-Stack Email Job Schedu
 
 Built for the **ReachInbox (Outbox Labs)** technical assessment.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel%20App-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://chronos-mail-distributed-job-scheduling-engine-2mmruwhwx.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel%20App-000000?style=for-the-badge&logo=vercel&logoColor=white)]https://chronos-mail-distributed-job-schedu.vercel.app/
 [![GitHub Repository](https://img.shields.io/badge/GitHub-ChronosMail--Distributed--Job--Scheduling--Engine-indigo?style=for-the-badge&logo=github)](https://github.com/ratnapriya29/ChronosMail-Distributed-Job-Scheduling-Engine)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![BullMQ](https://img.shields.io/badge/BullMQ-Distributed%20Queue-red?style=for-the-badge&logo=redis)](https://docs.bullmq.io/)
